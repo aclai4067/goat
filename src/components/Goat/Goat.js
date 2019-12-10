@@ -8,6 +8,7 @@ class Goat extends React.Component {
   static propTypes = {
     goat: goatShape.goatShape,
     freeGoat: PropTypes.func,
+    useGoat: PropTypes.func,
   }
 
   freeGoatEvent = (e) => {
@@ -15,6 +16,12 @@ class Goat extends React.Component {
     e.preventDefault();
     freeGoat(goat.id);
   }
+
+  useGoatEvent = (e) => {
+    const { useGoat, goat } = this.props;
+    e.preventDefault();
+    useGoat(goat.id);
+  };
 
   render() {
     const aGoat = this.props.goat;
@@ -26,6 +33,7 @@ class Goat extends React.Component {
           <p className="card-text">{aGoat.age}</p>
           <p className="card-text">{aGoat.description}</p>
           <button className="btn btn-outline-info" onClick={this.freeGoatEvent}>Free Goat</button>
+          <button className="btn btn-outline-warning" onClick={this.useGoatEvent}>Use Goat</button>
         </div>
       </div>
     );
