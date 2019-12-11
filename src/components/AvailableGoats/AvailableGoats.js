@@ -8,11 +8,14 @@ class AvailableGoats extends React.Component {
     availableGoats: PropTypes.arrayOf(goatShape.goatShape),
   }
 
-  render() {
+  getGoatCount = () => {
     const goats = this.props.availableGoats;
-    const freeGoats = goats.filter((goat) => goat.isBusy === false).length;
+    return goats.filter((goat) => !goat.isBusy).length;
+  }
+
+  render() {
     return (
-      <h3>{freeGoats} goats available</h3>
+      <h3>{this.getGoatCount()} goats available</h3>
     );
   }
 }
