@@ -1,27 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
+import goatData from '../helpers/data/goatData';
+import GoatCoral from '../components/GoatCoral/GoatCoral';
 
-function App() {
-  return (
+class App extends React.Component {
+  state = {
+    goats: [],
+  }
+
+  componentDidMount() {
+    const goats = goatData.getGoats();
+    this.setState({ goats });
+  }
+
+  freeGoat = (goatId) => {
+    goatData.freeAGoat(goatId);
+    const goats = goatData.getGoats();
+    this.setState({ goats });
+  };
+
+  useGoat = (goatId) => {
+    goatData.useAGoat(goatId);
+    const goats = goatData.getGoats();
+    this.setState({ goats });
+  };
+
+  render() {
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
         <button className="btn btn-secondary">Bootstrap Button</button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <GoatCoral someGoats={this.state.goats} freeGoats={this.freeGoat} useGoats={this.useGoat} />
     </div>
-  );
+    );
+  }
 }
 
 export default App;
