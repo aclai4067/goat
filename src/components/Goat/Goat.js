@@ -32,8 +32,10 @@ class Goat extends React.Component {
           <h5 className="card-title">{aGoat.name}</h5>
           <p className="card-text">{aGoat.age}</p>
           <p className="card-text">{aGoat.description}</p>
-          <button className="btn btn-outline-info" onClick={this.freeGoatEvent}>Free Goat</button>
-          <button className="btn btn-outline-warning" onClick={this.useGoatEvent}>Use Goat</button>
+          {
+            (aGoat.isBusy) ? (<button className="btn btn-outline-info" onClick={this.freeGoatEvent}>Free Goat</button>)
+              : (<button className="btn btn-outline-warning" onClick={this.useGoatEvent}>Use Goat</button>)
+          }
         </div>
       </div>
     );
